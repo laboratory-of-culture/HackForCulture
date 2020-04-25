@@ -3,10 +3,11 @@ from keyword_extractor import keyphrases_handler
 from sentence_transformers import SentenceTransformer
 from twitter_parser import *
 from bert_semantic_search import semantic_search
+import sys
 embedder = SentenceTransformer('bert-base-nli-mean-tokens')
 
 
-twitter_username = 'elonmusk'
+twitter_username = sys.argv[1]
 
 # tweets analysis
 all_tweets = scrap_tweets_text(twitter_username)
@@ -22,11 +23,11 @@ df['keywords'] = df.apply(lambda row: ' '.join([key[0] for key in keyphrases_han
 corpus = df['keywords'].tolist()
 corpus_embeddings = embedder.encode(corpus)
 
-N = 2
+N = 1
 recommendations = semantic_search(user_keys, corpus, corpus_embeddings, embedder, N)
 for res, dist in recommendations:
     row = df.loc[ df[df['keywords']==res].index[0] , : ]
-    print("Seems like event {} fits you. Please visit {}".format(row['name'].strip(), row['link']))
+    print("Seems like event {} fits this twitter account. Please visit {}".format(row['name'].strip(), row['link']))
 
-# df['keywords'] = ' '.join([key[0] for key in keyphrases_handler(df['desc'], 5)]) 
+
 
