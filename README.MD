@@ -6,7 +6,7 @@
 This code was developed in frame of online ideathon 24–26 April 2020 as potential AI-feature for existent [Events Terminal](https://eventsterminal.com/) resourse
 
   - Here we did PoC (Proof of Concept) how deeply personalize content
-  - We tried to find undestand user interests and preferences through twitter account (in future version also Facebook and Instagram will be available)
+  - We tried to undestand user interests and preferences through twitter account (in future version also Facebook and Instagram will be available)
   - Magic is under Natural Language Processing
 
 
@@ -15,7 +15,14 @@ This code was developed in frame of online ideathon 24–26 April 2020 as potent
 At the moment you do not login on Events Terminal, hence content is not personalized.
 In future this will be possible using OAuth (as you usually login to other web-resourses with you existent Facebook or Linkedin account, for e.g. to pass some funny tests).
 
-After that ( of course policy agreement for storing and protecting your personal data  will be confirmed by you) AI-algorimths will explore you page (posts, shares, likes, check-ins etc) and detect your interests. Based on that data only more relevant event will apper visiting Events Terminal.
+After that ( of course policy agreement for storing and protecting your personal data  will be confirmed by you) AI-algorimths will explore your page (posts, shares, likes, check-ins etc) and detect your interests. Based on that data only more relevant event will apper visiting Events Terminal.
+
+### Tech in a nutshell
+
+
+  - To get tweets we use twitter-parse package
+  - To retrieve keywords/phrases from both: events description and tweets we use [Python Keywords Extractor](https://github.com/boudinfl/pke) which uses nltk and spacy
+  - To find semantic similarity we use [BERT pretrained model](https://github.com/google-research/bert) and [SentenceTransformer](https://github.com/UKPLab/sentence-transformers) 
 
 ### USAGE
 Specifying twitter username (for e.g. `elonmusk` for Elon Musk or `realdonaldtrump` for Donal Trump) in `app.py`
